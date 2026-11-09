@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Студенты</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">Учёт студентов</h1>
+    <div class="header__user" id="userBox" hidden>
+      <span id="userInfo"></span>
+      <button class="button button_light" id="logoutButton" type="button">Выйти</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <p class="message" id="message" hidden></p>
+
+    <!-- Вход -->
+    <section class="card" id="loginSection">
+      <h2>Вход</h2>
+      <form class="form" id="loginForm">
+        <label>Email <input type="email" name="email" required value="admin@example.com"></label>
+        <label>Пароль <input type="password" name="password" required value="admin"></label>
+        <button class="button" type="submit">Войти</button>
+      </form>
+      <p class="hint">
+        Тестовые пользователи:<br>
+        <b>admin@example.com</b> / admin — всё со студентами<br>
+        <b>teacher@example.com</b> / teacher — только просмотр студентов<br>
+        <b>superadmin@example.com</b> / superAdmin — управление пользователями
+      </p>
+    </section>
+
+    <!-- Студенты (ADMIN, TEACHER) -->
+    <section class="card" id="studentsSection" hidden>
+      <div class="card__head">
+        <h2>Студенты <span class="count" id="studentsCount"></span></h2>
+        <button class="button button_light" id="reloadStudents" type="button">Обновить</button>
+      </div>
+      <table class="table">
+        <thead><tr><th>ID</th><th>Имя</th><th>Фамилия</th><th></th></tr></thead>
+        <tbody id="studentsTable"></tbody>
+      </table>
+
+      <div class="admin-only" hidden>
+        <h3>Добавить студента</h3>
+        <form class="form form_row" id="addStudentForm">
+          <input name="name" placeholder="Имя" required>
+          <input name="surname" placeholder="Фамилия" required>
+          <input name="phone_number" placeholder="Телефон">
+          <input name="email" type="email" placeholder="Email">
+          <button class="button" type="submit">Добавить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Карточка студента -->
+    <section class="card" id="studentDetails" hidden>
+      <div class="card__head">
+        <h2 id="detailsTitle">Студент</h2>
+        <button class="button button_light" id="closeDetails" type="button">Закрыть</button>
+      </div>
+      <dl class="details" id="detailsList"></dl>
+      <div class="admin-only" hidden>
+        <h3>Изменить контакты</h3>
+        <form class="form form_row" id="editStudentForm">
+          <input name="phoneNumber" placeholder="Телефон">
+          <input name="email" type="email" placeholder="Email">
+          <button class="button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Пользователи (SUPER_ADMIN) -->
+    <section class="card" id="usersSection" hidden>
+      <div class="card__head">
+        <h2>Пользователи <span class="count" id="usersCount"></span></h2>
+        <button class="button button_light" id="reloadUsers" type="button">Обновить</button>
+      </div>
+      <table class="table">
+        <thead><tr><th>ID</th><th>Email</th><th>Роли</th><th></th></tr></thead>
+        <tbody id="usersTable"></tbody>
+      </table>
+      <h3>Добавить пользователя</h3>
+      <form class="form form_row" id="addUserForm">
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="password" type="password" placeholder="Пароль" required>
+        <select name="role">
+          <option value="TEACHER">TEACHER</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+        </select>
+        <button class="button" type="submit">Добавить</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Профиль "demo": встроенная база H2 в памяти вместо PostgreSQL.
+# Данные живут, пока запущено приложение; при старте создаются тестовые пользователи и студенты.
+spring:
+  datasource:
+    url: jdbc:h2:mem:students_db;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS students_schema
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+    hikari:
+      schema: STUDENTS_SCHEMA
+      connection-init-sql: SELECT 1
